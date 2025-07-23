@@ -1,0 +1,20 @@
+# RollingDice_game
+
+A simple interactive dice game built with Python that lets you roll dice and keep score. Perfect for beginners learning game logic and randomness.
+
+## Requirements
+
+This project requires the following Python packages:
+blinker==1.9.0
+click==8.2.1
+colorama==0.4.6
+Flask==3.1.1
+itsdangerous==2.2.0
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+Werkzeug==3.1.3
+
+You can install them using pip works on Windows:
+
+```bash
+pip install -r requirements.txt
