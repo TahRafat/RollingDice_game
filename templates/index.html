@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dice Game</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #563a97;
+        }
+
+        .dice-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .dice {
+            width: 100px;
+            height: 100px;
+            animation: shake 0.5s;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(10deg);
+            }
+
+            50% {
+                transform: rotate(-10deg);
+            }
+
+            75% {
+                transform: rotate(10deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🎲 Dice Roll Game</h1>
+
+    {% if rolls %}
+    <h2>Latest Roll:</h2>
+    {% set last = rolls[-1] %}
+    <div class="dice-container">
+        <img src="{{ url_for('static', filename='dice' ~ last[0] ~ '.png') }}" class="dice">
+        <img src="{{ url_for('static', filename='dice' ~ last[1] ~ '.png') }}" class="dice">
+    </div>
+    <h2>Total Score: {{ score }}</h2>
+    {% else %}
+    <p>No rolls yet. Click below to start!</p>
+    {% endif %}
+
+    <form method="POST" id="rollForm">
+        <button type="submit" id="rollBtn">Roll Dice</button>
+    </form>
+
+    <br>
+    <form action="/reset">
+        <button type="submit">Reset Game</button>
+    </form>
+
+    <script>
+        // Add animation effect when form is submitted
+        document.getElementById("rollForm").addEventListener("submit", function () {
+            const diceImages = document.querySelectorAll(".dice");
+            diceImages.forEach(img => {
+                img.style.animation = "shake 0.5s";
+                setTimeout(() => img.style.animation = "", 500);
+            });
+        });
+    </script>
+</body>
+
+</html>
